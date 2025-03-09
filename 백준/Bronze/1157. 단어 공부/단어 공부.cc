@@ -1,36 +1,34 @@
 #include <iostream>
 #include <string>
-
 using namespace std;
 
-int main() {
+int main(){
     cin.tie(NULL);
     ios::sync_with_stdio(false);
 
     string inp;
     cin >> inp;
 
-    int arr[26] = {0};
-    
-    for (char c : inp) {
-        arr[toupper(c) - 'A']++;
+    int alphabet[26] = {};
+    for(char c: inp){
+        alphabet[toupper(c) - 'A']++;
     }
 
-    int maxCount = 0;
-    char maxChar = '?';
-    bool isDuplicate = false;
-
-    for (int i = 0; i < 26; i++) {
-        if (arr[i] > maxCount) {
-            maxCount = arr[i];
-            maxChar = 'A' + i;
-            isDuplicate = false;
-        } else if (arr[i] == maxCount) {
-            isDuplicate = true;
+    int max = 0;
+    char maxAlphabet = 'A';
+    bool duplication = false;
+    for(int i = 0; i < 26; i++){
+        if(max < alphabet[i]){
+            max = alphabet[i];
+            maxAlphabet = i + 'A';
+            duplication = false;
+        }
+        else if (max == alphabet[i]){
+            duplication = true;
         }
     }
 
-    cout << (isDuplicate ? '?' : maxChar) << '\n';
+    cout << (duplication ? '?' : maxAlphabet);
     
     return 0;
 }
