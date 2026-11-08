@@ -7,32 +7,26 @@ using namespace std;
 
 vector<string> solution(vector<string> record) {
     vector<string> answer;
-    map<string, string> users;
-
+    map<string, string> user;
+    string command, uid, name;
+    
     for (int i = 0; i < record.size(); i++) {
-        stringstream ss(record[i]);
-
-        string command, id, name;
-        ss >> command >> id >> name;
-
+        stringstream ss (record[i]);    
+        ss >> command >> uid >> name;
         if (command == "Enter" || command == "Change") {
-            users[id] = name;
+            user[uid] = name;
         }
     }
-
+    
     for (int i = 0; i < record.size(); i++) {
-        stringstream ss(record[i]);
-
-        string command, id;
-        ss >> command >> id;
-
+        stringstream ss (record[i]);
+        ss >> command >> uid;
         if (command == "Enter") {
-            answer.push_back(users[id] + "님이 들어왔습니다.");
+            answer.push_back(user[uid] + "님이 들어왔습니다.");
         }
         else if (command == "Leave") {
-            answer.push_back(users[id] + "님이 나갔습니다.");
+            answer.push_back(user[uid] + "님이 나갔습니다.");
         }
     }
-
     return answer;
 }
